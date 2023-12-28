@@ -1,0 +1,4 @@
+tim.c:34:6:MX_TIM21_Init	4
+tim.c:74:6:HAL_TIM_Base_MspInit	2
+tim.c:94:6:HAL_TIM_Base_MspDeInit	2
+tim.c:114:6:HAL_TIM_PeriodElapsedCallback	1
