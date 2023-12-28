@@ -92,13 +92,19 @@ int main(void)
   MX_USART2_UART_Init();
   MX_TIM21_Init();
   MX_I2C1_Init();
+  MX_TIM22_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
+  // Start Timer for cyclic actions
   HAL_TIM_Base_Start_IT(&htim21);
+
+  // Start Timer for us delay function
+  HAL_TIM_Base_Start(&htim22);
 
   // Init BME
   user_init_bme(&bme);
@@ -107,8 +113,9 @@ int main(void)
   {
 	  HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
 
-	  HAL_Delay(2000);
-	  HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFE);
+	  HAL_Delay(1000);
+	  //bme68x_delay_us(50000, (void*) &bme);
+	  //HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFE);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

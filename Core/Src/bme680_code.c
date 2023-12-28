@@ -7,6 +7,7 @@
 
 /*** Includes ****/
 #include "bme680_code.h"
+#include "tim.h"
 //#include "bme68x_defs.h"
 
 /*** Global vars***/
@@ -80,8 +81,8 @@ BME68X_INTF_RET_TYPE bme68x_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32
 
     (void)intf_ptr;
 
-    ret = HAL_I2C_Mem_Read(&hi2c1, device_addr<<1, reg_addr,
-    		(uint16_t)sizeof(uint8_t), reg_data, (uint16_t) len, 100);
+    ret = HAL_I2C_Mem_Read(&hi2c1, (uint16_t)(device_addr<<1), (uint16_t)reg_addr,
+    		(uint16_t)sizeof(uint8_t), (uint8_t *)reg_data, (uint16_t)len, 100);
 
     return ret;
 }
@@ -95,7 +96,7 @@ BME68X_INTF_RET_TYPE bme68x_i2c_write(uint8_t reg_addr, const uint8_t *reg_data,
 
     (void)intf_ptr;
 
-    ret = HAL_I2C_Mem_Write(&hi2c1, (uint16_t) device_addr, (uint16_t) reg_addr,
+    ret = HAL_I2C_Mem_Write(&hi2c1, (uint16_t)(device_addr<<1), (uint16_t)reg_addr,
                                         (uint16_t) sizeof(reg_addr), (uint8_t *)reg_data, (uint16_t)len, 100);
 
     return ret;
@@ -104,6 +105,8 @@ BME68X_INTF_RET_TYPE bme68x_i2c_write(uint8_t reg_addr, const uint8_t *reg_data,
 // Wrapper code to map delay function
 void bme68x_delay_us(uint32_t period, void *intf_ptr)
 {
-    (void)intf_ptr;
-    //coines_delay_usec(period);
+	// set the counter value to 0
+    __HAL_TIM_SET_COUNTER(&htim22,0);
+    // wait for the counter to reach the us input in the parameter
+    while (__HAL_TIM_GET_COUNTER(&htim22) < period);
 }
