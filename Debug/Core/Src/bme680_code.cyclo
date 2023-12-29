@@ -1,5 +1,0 @@
-bme680_code.c:25:9:user_init_bme	1
-bme680_code.c:70:9:bme_run_measurement	1
-bme680_code.c:76:22:bme68x_i2c_read	1
-bme680_code.c:91:22:bme68x_i2c_write	1
-bme680_code.c:106:6:bme68x_delay_us	2

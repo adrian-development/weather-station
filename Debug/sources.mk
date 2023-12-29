@@ -26,4 +26,5 @@ Core/Src \
 Core/Startup \
 Drivers/BME680 \
 Drivers/STM32L0xx_HAL_Driver/Src \
+Firmware \
 
