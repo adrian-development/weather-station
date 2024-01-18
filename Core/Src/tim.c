@@ -176,7 +176,7 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
 /* USER CODE BEGIN 1 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	uint8_t data[50] = "Hello group 8\n\r";
+	uint8_t data[50] = "Hello group 8\r\n";
 
 	HAL_UART_Transmit(&huart2, data, strlen((char*)data), 100);
 }

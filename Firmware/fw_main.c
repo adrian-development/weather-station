@@ -24,12 +24,12 @@ void fw_main()
 	// Start Timer for us delay function
 	HAL_TIM_Base_Start(&htim22);
 
-	debug_print("Starting BME Init...\n\r");
+	debug_print("Starting BME Init...\r\n");
 
 	// Init BME
 	rslt = user_init_bme();
 
-	debug_print("BME Initialized with return %d\n\r", rslt);
+	debug_print("BME Initialized with return %d\r\n", rslt);
 
 	while(1)
 	{

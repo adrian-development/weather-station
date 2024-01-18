@@ -2129,7 +2129,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
  8000d28:	b500      	push	{lr}
  8000d2a:	b08f      	sub	sp, #60	; 0x3c
-	uint8_t data[50] = "Hello group 8\n\r";
+	uint8_t data[50] = "Hello group 8\r\n";
  8000d2c:	2210      	movs	r2, #16
  8000d2e:	490a      	ldr	r1, [pc, #40]	; (8000d58 <HAL_TIM_PeriodElapsedCallback+0x30>)
  8000d30:	a801      	add	r0, sp, #4
@@ -2167,15 +2167,15 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
  8000d64:	b510      	push	{r4, lr}
   huart2.Instance = USART2;
  8000d66:	6003      	str	r3, [r0, #0]
-  huart2.Init.BaudRate = 115200;
- 8000d68:	23e1      	movs	r3, #225	; 0xe1
- 8000d6a:	025b      	lsls	r3, r3, #9
+  huart2.Init.BaudRate = 9600;
+ 8000d68:	2396      	movs	r3, #150	; 0x96
+ 8000d6a:	019b      	lsls	r3, r3, #6
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_NONE;
   huart2.Init.Mode = UART_MODE_TX_RX;
  8000d6c:	220c      	movs	r2, #12
-  huart2.Init.BaudRate = 115200;
+  huart2.Init.BaudRate = 9600;
  8000d6e:	6043      	str	r3, [r0, #4]
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
  8000d70:	2300      	movs	r3, #0
@@ -9017,7 +9017,7 @@ void bme68x_delay_us(uint32_t period, void *intf_ptr)
     rslt = bme68x_init(&bme);
  80032a4:	f7fe f85e 	bl	8001364 <bme68x_init>
  80032a8:	0001      	movs	r1, r0
-    debug_print("API Init: %d\n\r",rslt);
+    debug_print("API Init: %d\r\n",rslt);
  80032aa:	4838      	ldr	r0, [pc, #224]	; (800338c <user_init_bme+0x10c>)
  80032ac:	f000 f872 	bl	8003394 <debug_print>
     conf.filter = BME68X_FILTER_OFF;
@@ -9101,7 +9101,7 @@ void bme68x_delay_us(uint32_t period, void *intf_ptr)
  800331e:	783b      	ldrb	r3, [r7, #0]
  8003320:	2b00      	cmp	r3, #0
  8003322:	d01f      	beq.n	8003364 <user_init_bme+0xe4>
-            	debug_print("Sample: %u, Time: %lu, Temp: %d, Pres: %lu, Hum: %lu, Gas: %lu, Stat: 0x%x\n\r",
+            	debug_print("Sample: %u, Time: %lu, Temp: %d, Pres: %lu, Hum: %lu, Gas: %lu, Stat: 0x%x\r\n",
  8003324:	ab02      	add	r3, sp, #8
  8003326:	203a      	movs	r0, #58	; 0x3a
  8003328:	5e18      	ldrsh	r0, [r3, r0]
@@ -9216,7 +9216,7 @@ void fw_main()
  80033d4:	480b      	ldr	r0, [pc, #44]	; (8003404 <fw_main+0x38>)
  80033d6:	f7ff fa7f 	bl	80028d8 <HAL_TIM_Base_Start>
 
-	debug_print("Starting BME Init...\n\r");
+	debug_print("Starting BME Init...\r\n");
  80033da:	480b      	ldr	r0, [pc, #44]	; (8003408 <fw_main+0x3c>)
  80033dc:	f7ff ffda 	bl	8003394 <debug_print>
 
@@ -9232,7 +9232,7 @@ void fw_main()
  80033e4:	24fa      	movs	r4, #250	; 0xfa
 	rslt = user_init_bme();
  80033e6:	0001      	movs	r1, r0
-	debug_print("BME Initialized with return %d\n\r", rslt);
+	debug_print("BME Initialized with return %d\r\n", rslt);
  80033e8:	4808      	ldr	r0, [pc, #32]	; (800340c <fw_main+0x40>)
  80033ea:	f7ff ffd3 	bl	8003394 <debug_print>
 		HAL_Delay(1000);

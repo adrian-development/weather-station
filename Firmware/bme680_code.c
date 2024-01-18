@@ -52,7 +52,7 @@ uint8_t user_init_bme()
 
     // Run API init
     rslt = bme68x_init(&bme);
-    debug_print("API Init: %d\n\r",rslt);
+    debug_print("API Init: %d\r\n",rslt);
 
     // Config Filter
     conf.filter = BME68X_FILTER_OFF;
@@ -87,7 +87,7 @@ uint8_t user_init_bme()
             if(n_fields)
             {
 
-            	debug_print("Sample: %u, Time: %lu, Temp: %d, Pres: %lu, Hum: %lu, Gas: %lu, Stat: 0x%x\n\r",
+            	debug_print("Sample: %u, Time: %lu, Temp: %d, Pres: %lu, Hum: %lu, Gas: %lu, Stat: 0x%x\r\n",
                        sample_count,
                        (long unsigned int)time_ms,
                        (data.temperature / 100),
